@@ -1,4 +1,4 @@
-# Creating a new Hoodie App
+s# Creating a new Hoodie App
 
 ## Installation
 
@@ -9,9 +9,7 @@ Please refer to the [install guides for OS X, Linux and Windows](http://hood.ie/
 To install a specific plugin, run (in your app's directory):
 
 ```bash
-
 $ hoodie install <name>
-
 ```
 
 where `<name>` is one of the Hoodie Plugin.
@@ -19,9 +17,7 @@ where `<name>` is one of the Hoodie Plugin.
 To uninstall use:
 
 ```bash
-
 $ hoodie uninstall <name>
-
 ```
 
 ### List of Hoodie Plugins
@@ -42,19 +38,15 @@ $ hoodie uninstall <name>
 Make sure that local-tld got installed correctly
 
 ```bash
-
 $ NODE_PATH=`npm root -g`
 $ open $NODE_PATH/local-tld
-
 ````
 
 Make sure that paths have been set correctly
 
 ```bash
-
 $ echo $NODE_PATH
 $ cat ~/Library/LaunchAgents/ie.hood.local-tld-service.plist
-
 ```
 
 In some situations, you may need to manually update `~/Library/LaunchAgents/ie.hood.local-tld-service.plist` to correctly source your Node installation, particularly if you are using a Node version manager, such as `nvm`.
@@ -62,13 +54,11 @@ In some situations, you may need to manually update `~/Library/LaunchAgents/ie.h
 Check the output of `$ cat ~/Library/LaunchAgents/ie.hood.local-tld-service.plist` for the following:
 
 ```plist
-
 <key>ProgramArguments</key>
 <array>
     <string>should equal the output of `$ which node`</string>
     <string>should equal the output of `$ echo $NODE_PATH` + /local-tld/bin/local-tld-service</string>
 </array>
-
 ```
 
 If these values aren't correct, you'll need to open `~/Library/LaunchAgents/ie.hood.local-tld-service.plist` in a text editor and update the file with the aforementioned values.
@@ -76,18 +66,14 @@ If these values aren't correct, you'll need to open `~/Library/LaunchAgents/ie.h
 If things do not work, try:
 
 ```bash
-
 $ launchctl unload ~/Library/LaunchAgents/ie.hood.local-tld-service.plist
 $ launchctl load -Fw ~/Library/LaunchAgents/ie.hood.local-tld-service.plist
-
 ```
 
 If things STILL don't work, try that (but don't tell Jan) ((I saw this! — Jan))
 
 ```bash
-
 $ sudo $NODE_PATH/local-tld/bin/local-tld-troubleshoot
-
 ```
 
 **Vhosts**
@@ -108,26 +94,20 @@ You need a Nodejitsu account and the `jitsu` tool installed.
 Create a new hoodie app:
 
 ```bash
-
 $ hoodie new myapp
-
 ```
 
 Start app locally:
 
 ```bash
-
 $ cd myapp
 $ hoodie start
-
 ```
 
 
 Create a database:
 ```bash
-
 $ jitsu database create couch myapp
-
 ```
 
 This prints out the URL for your database, something like:
@@ -139,20 +119,22 @@ http://nodejitsudb123456789.iriscouch.com:5984
 Go to:
 
 ```bash
-
 http://nodejitsudb123456789.iriscouch.com:5984/_utils
-
+```
 In the bottom right, click on "Fix This". Create a new user with the username `admin` and a password of your choice. Remember the password.
 
 Create the Nodejitsu app.
-
-    $ jitsu apps create
+```bash
+$ jitsu apps create
+```
 
 Set your database URL as an environment variable:
 
-    $ jitsu env set COUCH_URL http://nodejitsudb1234567890.iriscouch.com:5984
-    $ jitsu env set HOODIE_ADMIN_USER admin
-    $ jitsu env set HOODIE_ADMIN_PASS <yourpassword>
+```bash
+$ jitsu env set COUCH_URL http://nodejitsudb1234567890.iriscouch.com:5984
+$ jitsu env set HOODIE_ADMIN_USER admin
+$ jitsu env set HOODIE_ADMIN_PASS <yourpassword>
+```
 
 
 `<yourpassword>` is the one you set up two steps ago.
